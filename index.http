@@ -2,9 +2,14 @@ POST http://localhost:3000/api/users/register
 Content-Type: application/json
 
 {
-"email":"aa@gmail.com",
-"password":"123456789"
+"email":"k@gmail.com",
+"password":"12345678"
 }
 
 ###
-POST http://localhost:3000/api/users/validation
+POST http://localhost:3000/api/users/validate
+
+{
+"user":"aa@gmail.com",
+"code":"123456789"
+}
