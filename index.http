@@ -1,0 +1,10 @@
+POST http://localhost:3000/api/users/register
+Content-Type: application/json
+
+{
+"email":"aa@gmail.com",
+"password":"123456789"
+}
+
+###
+POST http://localhost:3000/api/users/validation
