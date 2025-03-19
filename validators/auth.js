@@ -12,7 +12,7 @@ const validatorRegister = [
 
 const validatorCode = [
 
-    check("code").exists().notEmpty().isLength({min:6}, {max:6}),
+    check("code").exists().notEmpty().isLength({min:6, max:6}),
     (req, res, next) => {
         return validateResults(req, res, next)
     }
