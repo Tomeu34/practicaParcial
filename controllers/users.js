@@ -22,11 +22,21 @@ const registerUser = async (req, res) => {
 
 const validateUser = async (req, res) => {
 
-    const user = await usersModel.find({"email": req.body.user})
+    var user = await usersModel.find({"email": req.body.user})
 
-    if(user[0].valCode == req.body.code){
-        
-        user.set('userState', 'Validated')
+    if(user[0].userState == "Validated"){
+
+        console.log("Usuario ya validado")
+
+    } else {
+
+        if(user[0].valCode == req.body.code){
+            
+            console.log("Hola")
+            await usersModel.updateOne({ email: req.body.user}, { $set: {userState : "Validated"} });
+        }
+
+        user = await usersModel.find({"email": req.body.user})
     }
 
     res.send(user)
