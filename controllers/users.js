@@ -42,5 +42,33 @@ const validateUser = async (req, res) => {
     res.send(user)
 }
 
-//TODO router.post("/login", (req, res) => {}
-module.exports = { registerUser, validateUser }
+const login = async (req, res) => {
+    
+    user = await usersModel.find({"email": req.body.email})
+
+    if(user[0] == undefined){
+
+        console.log("ERROR: Usuario no encontrado")
+
+    } else {
+
+        if(user[0].userState == "pending"){
+
+            console.log("ERROR: Usuario no validado")
+
+        } else {
+
+            if(compare(req.body.password, user[0].password)){
+
+                console.log("Login exitoso")
+                res.send(user)
+
+            } else {
+
+                console.log("ERROR: Contraseña incorrecta")
+            }
+        }
+    }
+}
+
+module.exports = { registerUser, validateUser, login }
