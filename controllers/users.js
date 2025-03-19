@@ -22,7 +22,14 @@ const registerUser = async (req, res) => {
 
 const validateUser = async (req, res) => {
 
+    const user = await usersModel.find({"email": req.body.user})
 
+    if(user[0].valCode == req.body.code){
+        
+        user.set('userState', 'Validated')
+    }
+
+    res.send(user)
 }
 
 //TODO router.post("/login", (req, res) => {}

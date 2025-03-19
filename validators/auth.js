@@ -10,6 +10,14 @@ const validatorRegister = [
     }
 ]
 
+const validatorCode = [
+
+    check("valCode").exists().notEmpty().equals(),
+    (req, res, next) => {
+        return validateResults(req, res, next)
+    }
+]
+
 //const validatorLogin = [
 //
 //    check("email").exists().notEmpty().isEmail(),
@@ -19,4 +27,4 @@ const validatorRegister = [
 //    }
 //]
 
-module.exports = { validatorRegister}//, validatorLogin 
+module.exports = { validatorRegister, validatorCode }//, validatorLogin 
