@@ -22,6 +22,8 @@ const registerUser = async (req, res) => {
 
 const validateUser = async (req, res) => {
 
+    //verifyToken(req.params.token)
+
     var user = await usersModel.find({"email": req.body.user})
 
     if(user[0].userState == "Validated"){
@@ -71,4 +73,9 @@ const login = async (req, res) => {
     }
 }
 
-module.exports = { registerUser, validateUser, login }
+const logo = async (req, res) => {
+
+
+}
+
+module.exports = { registerUser, validateUser, login, logo }

@@ -2,7 +2,7 @@ POST http://localhost:3000/api/users/register
 Content-Type: application/json
 
 {
-"email":"p@gmail.com",
+"email":"pa@gmail.com",
 "password":"12345678"
 }
 
@@ -23,3 +23,15 @@ Content-Type: application/json
 "email":"p@gmail.com",
 "password":"12345678"
 }
+
+
+###
+PATCH http://localhost:3000/api/storage/logo
+Content-Type: multipart/form-data; boundary=boundary123
+
+--boundary123
+Content-Disposition: form-data; name=image; filename="imagen.jpg"
+Content-Type: image/jpeg
+
+< ./imagen.jpg
+--boundary123--
