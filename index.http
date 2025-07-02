@@ -67,3 +67,23 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODY0OGJmY
 ###
 GET http://localhost:3000/api/users/me
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODY0NmYyODhlNmM2NzFjOTk4YjdhM2UiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzUxNDEyNTIwLCJleHAiOjE3NTE0MTk3MjB9.wThgx4bd7WP8uWTW3ouS38cr8skQ23jQ9Evr800HXes
+
+###
+POST http://localhost:3000/api/client/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODY0OGJmYWI2MGM2NjA3MzNiOTllM2UiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzUxNDE5ODk4LCJleHAiOjE3NTE0MjcwOTh9.mykXlsRaaSO5OVtN21e2mssjJglHcAtTYnnHKjUrTmk
+Content-Type: application/json
+
+{
+  "nombre": "Cliente2",
+  "email": "cliente1@email.com",
+  "telefono": "+34666111222"
+}
+
+###
+PUT http://localhost:3000/api/client/6864a4fefdd17d102a377756
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODY0OGJmYWI2MGM2NjA3MzNiOTllM2UiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzUxNDE5ODk4LCJleHAiOjE3NTE0MjcwOTh9.mykXlsRaaSO5OVtN21e2mssjJglHcAtTYnnHKjUrTmk
+Content-Type: application/json
+
+{
+    "telefono": "+34999111222"
+}

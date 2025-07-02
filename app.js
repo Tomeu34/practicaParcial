@@ -4,6 +4,7 @@ require('dotenv').config();
 const dbConnect = require('./config/mongo.js')
 const usersRouter = require('./routes/users.js')
 const storageRouter = require('./routes/storage.js')
+const clientRouter = require('./routes/client.js')
 //const authRouter = require('./routes/auth.js')
 
 dbConnect()
@@ -22,4 +23,5 @@ app.listen(port, () => {
 
 app.use("/api/users", usersRouter)
 app.use("/api/storage", storageRouter)
+app.use("/api/client", clientRouter)
 //app.use("/api/auth", authRouter)
