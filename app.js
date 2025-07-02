@@ -6,7 +6,13 @@ const usersRouter = require('./routes/users.js')
 const storageRouter = require('./routes/storage.js')
 const clientRouter = require('./routes/client.js')
 const projectRoutes = require('./routes/projects.js')
+const deliveryNoteRoutes = require('./routes/deliveryNote.js')
 //const authRouter = require('./routes/auth.js')
+
+const swaggerUi = require('swagger-ui-express');
+const YAML = require('yamljs');
+
+const swaggerDocument = YAML.load('./docs/Swagger.yaml');
 
 dbConnect()
 
@@ -26,4 +32,9 @@ app.use("/api/users", usersRouter)
 app.use("/api/storage", storageRouter)
 app.use("/api/client", clientRouter)
 app.use("/api/project", projectRoutes)
+app.use("/api/deliverynote", deliveryNoteRoutes)
 //app.use("/api/auth", authRouter)
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+module.exports = app;

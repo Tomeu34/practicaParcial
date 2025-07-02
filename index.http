@@ -70,11 +70,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODY0NmYyO
 
 ###
 POST http://localhost:3000/api/client/
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODY0OGJmYWI2MGM2NjA3MzNiOTllM2UiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzUxNDE5ODk4LCJleHAiOjE3NTE0MjcwOTh9.mykXlsRaaSO5OVtN21e2mssjJglHcAtTYnnHKjUrTmk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODY0YWUzOGZhZWUwMzFiMWQ4M2NhMWYiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzUxNDI4NjY0LCJleHAiOjE3NTE2MDE0NjR9.-qhX0DzG9Mrx12am4ANYV1wFz8pnnt52nVBgSEUoxc0
 Content-Type: application/json
 
 {
-  "nombre": "Cliente4",
+  "nombre": "Cliente5",
   "email": "cliente1@email.com",
   "telefono": "+34666111222"
 }
@@ -118,7 +118,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODY0YWUzO
 Content-Type: application/json
 
 {
-    "nombre": "Proyecto 2",
+    "nombre": "Proyecto 4",
     "descripcion": "Descripción del proyecto",
     "cliente": "6864a628ed6d74aa6cfb396c"
 }
@@ -156,3 +156,28 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODY0YWUzO
 PATCH http://localhost:3000/api/project/6864aebec0290b096405545b/restore
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODY0YWUzOGZhZWUwMzFiMWQ4M2NhMWYiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzUxNDI4NjY0LCJleHAiOjE3NTE2MDE0NjR9.-qhX0DzG9Mrx12am4ANYV1wFz8pnnt52nVBgSEUoxc0
 
+###
+POST http://localhost:3000/api/deliverynote 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODY0YWUzOGZhZWUwMzFiMWQ4M2NhMWYiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzUxNDI4NjY0LCJleHAiOjE3NTE2MDE0NjR9.-qhX0DzG9Mrx12am4ANYV1wFz8pnnt52nVBgSEUoxc0
+Content-Type: application/json
+
+{
+  "proyecto": "6864b9849bbe261810629d66",
+  "cliente": "6864b9ac9bbe261810629d6c",
+  "horas": [
+    { "persona": "6864a628ed6d74aa6cfb396c", "horas": 4, "descripcion": "Instalación" }
+  ],
+  "materiales": [
+    { "nombre": "Cables", "cantidad": 50, "unidad": "m", "descripcion": "Cableado eléctrico" }
+  ]
+}
+
+###
+GET http://localhost:3000/api/deliverynote/6864bcc8fe23106fdbe7f1d3
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODY0YWUzOGZhZWUwMzFiMWQ4M2NhMWYiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzUxNDI4NjY0LCJleHAiOjE3NTE2MDE0NjR9.-qhX0DzG9Mrx12am4ANYV1wFz8pnnt52nVBgSEUoxc0
+
+###
+GET http://localhost:3000/api/deliverynote/pdf/6864bcc8fe23106fdbe7f1d3
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODY0YWUzOGZhZWUwMzFiMWQ4M2NhMWYiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzUxNDI4NjY0LCJleHAiOjE3NTE2MDE0NjR9.-qhX0DzG9Mrx12am4ANYV1wFz8pnnt52nVBgSEUoxc0
+
+--output albaran.pdf
