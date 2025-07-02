@@ -22,8 +22,6 @@ const createClient = async (req, res) => {
     company: company || undefined
   };
 
-  console.log(clientData)
-
   const client = await clientsModel.create(clientData)
 
   await client.save();
