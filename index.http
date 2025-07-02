@@ -2,17 +2,18 @@ POST http://localhost:3000/api/users/register
 Content-Type: application/json
 
 {
-"email":"pa@gmail.com",
+"email":"pacas@gmail.com",
 "password":"12345678"
 }
 
 ###
 POST http://localhost:3000/api/users/validate
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODY0NmYyODhlNmM2NzFjOTk4YjdhM2UiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzUxNDEyNTIwLCJleHAiOjE3NTE0MTk3MjB9.wThgx4bd7WP8uWTW3ouS38cr8skQ23jQ9Evr800HXes
 Content-Type: application/json
 
 {
-"user":"p@gmail.com",
-"code":"541040"
+"user":"paca@gmail.com",
+"code":"973589"
 }
 
 ###
@@ -20,7 +21,7 @@ POST http://localhost:3000/api/users/login
 Content-Type: application/json
 
 {
-"email":"p@gmail.com",
+"email":"pac@gmail.com",
 "password":"12345678"
 }
 
@@ -35,3 +36,34 @@ Content-Type: image/jpeg
 
 < ./imagen.jpg
 --boundary123--
+
+###
+PUT http://localhost:3000/api/users/register
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODY0OGJmYWI2MGM2NjA3MzNiOTllM2UiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzUxNDE5ODk4LCJleHAiOjE3NTE0MjcwOTh9.mykXlsRaaSO5OVtN21e2mssjJglHcAtTYnnHKjUrTmk
+Content-Type: application/json
+
+{
+"nombre":"tomeu",
+"apellidos":"verdera",
+"nif":"56713371O"
+}
+
+###
+PATCH http://localhost:3000/api/users/company
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODY0OGJmYWI2MGM2NjA3MzNiOTllM2UiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzUxNDE5ODk4LCJleHAiOjE3NTE0MjcwOTh9.mykXlsRaaSO5OVtN21e2mssjJglHcAtTYnnHKjUrTmk
+Content-Type: application/json
+
+{
+  "nombre": "Tech Solutions SL",
+  "cif": "B12345678",
+  "direccion": "Calle Falsa 123"
+}
+
+###
+DELETE http://localhost:3000/api/users/user?soft=false
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODY0OGJmYWI2MGM2NjA3MzNiOTllM2UiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzUxNDE5ODk4LCJleHAiOjE3NTE0MjcwOTh9.mykXlsRaaSO5OVtN21e2mssjJglHcAtTYnnHKjUrTmk
+
+
+###
+GET http://localhost:3000/api/users/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODY0NmYyODhlNmM2NzFjOTk4YjdhM2UiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzUxNDEyNTIwLCJleHAiOjE3NTE0MTk3MjB9.wThgx4bd7WP8uWTW3ouS38cr8skQ23jQ9Evr800HXes

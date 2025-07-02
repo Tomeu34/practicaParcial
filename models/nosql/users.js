@@ -23,7 +23,29 @@ const UserScheme = new mongoose.Schema({
     role:{
         type: ["user", "admin"], // es el enum de SQL
         default: "user"
-    }},
+    },
+    nombre: { 
+        type: String,
+        require: false
+    },
+    apellidos: { 
+        type: String,
+        require: false
+    },
+    nif: { 
+        type: String,
+        require: false
+    },
+    company: {
+        nombre: { type: String },
+        cif: { type: String },
+        direccion: { type: String },
+        isAutonomo: { type: Boolean, default: false }
+    },
+    deleted: { 
+        type: Boolean, 
+        default: false 
+    },},
     {
         timestamps: true, // TODO createdAt, updatedAt
         versionKey: false

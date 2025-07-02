@@ -1,7 +1,7 @@
 const { matchedData } = require("express-validator")
 const { encrypt, compare } = require("../utils/handlePassword")
 const {usersModel} = require("../models")
-const {tokenSign, verifyToken} = require("../utils/handleJwt")
+const {tokenSign} = require("../utils/handleJwt")
 
 const registerUser = async (req, res) => {
     req = matchedData(req)
@@ -21,8 +21,6 @@ const registerUser = async (req, res) => {
 }
 
 const validateUser = async (req, res) => {
-
-    //verifyToken(req.params.token)
 
     var user = await usersModel.find({"email": req.body.user})
 
@@ -78,4 +76,100 @@ const logo = async (req, res) => {
 
 }
 
-module.exports = { registerUser, validateUser, login, logo }
+const onBoardingUser = async (req, res) => {
+  try {
+    const { nombre, apellidos, nif } = req.body;
+
+    const user = await usersModel.findByIdAndUpdate(
+      req.user._id,
+      { nombre, apellidos, nif },
+      { new: true, runValidators: true }
+    ).select('-password -verificationCode');
+
+    if (!user) return res.status(404).json({ error: 'Usuario no encontrado' });
+
+    res.status(200).json({ message: 'Datos personales actualizados', user });
+  } catch (err) {
+    res.status(500).json({ error: 'Error en el servidor' });
+  }
+}
+
+const onBoardingCompany = async (req, res) => {
+  try {
+    const { nombre, cif, direccion, isAutonomo } = req.body;
+
+    const user = await usersModel.findById(req.user._id);
+    if (!user) return res.status(404).json({ error: 'Usuario no encontrado' });
+
+    if (isAutonomo) {
+      // Copiar sus datos personales como empresa
+      user.company = {
+        nombre: user.nombre,
+        cif: user.nif,
+        direccion,
+        isAutonomo: true,
+      };
+    } else {
+      user.company = {
+        nombre,
+        cif,
+        direccion,
+        isAutonomo: false,
+      };
+    }
+
+    await user.save();
+
+    res.status(200).json({ message: 'Datos de compañía actualizados', company: user.company });
+  } catch (err) {
+    res.status(500).json({ error: 'Error en el servidor' });
+  }
+};
+
+const getUser = async (req, res) => {
+
+    try {
+        console.log(req.user)
+        const userId = req.user._id;
+
+        const user = await usersModel.findById(userId).select('-password -verificationCode');
+
+        if (!user) {
+            return res.status(404).json({ error: 'Usuario no encontrado' });
+        }
+
+        res.json({
+            email: user.email,
+            status: user.status,
+            role: user.role,
+        });
+        
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Error en el servidor' });
+    }
+}
+
+const deleteUser = async (req, res) => {
+  const userId = req.user._id;
+  const isSoftDelete = req.query.soft !== 'false'; // true si soft, false si hard
+
+  try {
+    const user = await usersModel.findById(userId);
+    if (!user) return res.status(404).json({ error: 'Usuario no encontrado' });
+
+    if (isSoftDelete) {
+      user.deleted = true;
+      await user.save();
+      return res.status(200).json({ message: 'Usuario eliminado (soft delete)' });
+    } else {
+      await usersModel.findByIdAndDelete(userId);
+      return res.status(200).json({ message: 'Usuario eliminado permanentemente (hard delete)' });
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Error al eliminar usuario' });
+  }
+};
+
+module.exports = { registerUser, validateUser, login, logo, onBoardingUser, getUser, onBoardingCompany, deleteUser }
