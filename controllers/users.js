@@ -17,7 +17,7 @@ const registerUser = async (req, res) => {
 
     console.log("Enviando código de verificación al correo. Código: ", valCode)
 
-    res.send(data)
+    res.json(data)
 }
 
 const validateUser = async (req, res) => {
